@@ -1,3 +1,6 @@
+
+# Ran rails generate scaffold User name:string email:string
+
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
@@ -8,3 +11,4 @@ class CreateUsers < ActiveRecord::Migration
     end
   end
 end
+
