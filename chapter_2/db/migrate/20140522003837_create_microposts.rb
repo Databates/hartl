@@ -1,3 +1,6 @@
+
+#  $ rails generate scaffold User name:string email:string
+
 class CreateMicroposts < ActiveRecord::Migration
   def change
     create_table :microposts do |t|
