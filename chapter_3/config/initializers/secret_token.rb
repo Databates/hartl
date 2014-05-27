@@ -9,4 +9,24 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Chapter3::Application.config.secret_key_base = 'f246a32225c88e47e7b26359d6ba0788950017dbff26ab64e11d27403d42b4bc49f14edafe3015d2ac6cf5a23218c66d2b4e575516598a461017432dba957fbf'
+
+
+# Removed this hard coded part: Chapter3::Application.config.secret_key_base = 'some long string of letters and numbers'
+
+#from chapter 3.1 of Hartl: 
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+SampleApp::Application.config.secret_key_base = secure_token
